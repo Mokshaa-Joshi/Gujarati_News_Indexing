@@ -2,7 +2,7 @@ name: Gujarati News Indexing Cron Job
 
 on:
   schedule:
-    - cron: '30 5,17 * * *'  # Runs at 4:30 AM UTC (which is 10:00 AM IST)
+    - cron: '30 5,17 * * *'  # Runs at 5:30 and 17:30 UTC
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
