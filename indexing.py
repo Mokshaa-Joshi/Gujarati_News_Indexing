@@ -7,7 +7,7 @@ from datetime import datetime
 
 
 # MongoDB connection setup
-client = MongoClient("mongodb+srv://aieworldsportso2o:a8T5wYHiQp0EuNpa@cluster0.n3a1w.mongodb.net/")  
+client = MongoClient("MONGO_URI")  
 db = client['news_data']  # Database name
 gs_collection = db['gujarat_samachar_articles']  # Collection for Gujarat Samachar
 dd_collection = db['dd_news_articles']  # Collection for DD News Gujarati
