@@ -4,10 +4,11 @@ import pymongo
 from pymongo import MongoClient
 import re
 from datetime import datetime
-
+import os
 
 # MongoDB connection setup
-client = MongoClient("MONGO_URI")  
+MONGO_URI = os.getenv("MONGO_URI")
+client = MongoClient(MONGO_URI)  
 db = client['news_data']  # Database name
 gs_collection = db['gujarat_samachar_articles']  # Collection for Gujarat Samachar
 dd_collection = db['dd_news_articles']  # Collection for DD News Gujarati
