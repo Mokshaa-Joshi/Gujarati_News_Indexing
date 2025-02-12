@@ -2,7 +2,7 @@ name: Gujarati News Indexing Cron Job
 
 on:
   schedule:
-    - cron: '30 5,17 * * *'  # Runs at 5:30 and 17:30 UTC
+    - cron: '30 5 * * *'  # Runs at 5:30 and 17:30 UTC
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
@@ -21,6 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
+
+      - name: Start MongoDB
+        run: |
+          sudo systemctl start mongod
+          sleep 5  # Give MongoDB time to start
 
       - name: Run the indexing script
         run: python indexing.py
