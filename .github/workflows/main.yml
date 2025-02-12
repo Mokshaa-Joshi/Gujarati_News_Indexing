@@ -1,12 +1,12 @@
-name: Gujarati News Indexing Cron Job
+name: Run Indexing Script
 
 on:
   schedule:
-    - cron: '30 5 * * *'  # Runs at 5:30 and 17:30 UTC
+    - cron: "30 5 * * *"  # Runs once a day at 05:30 UTC
   workflow_dispatch:  # Allows manual triggering
 
 jobs:
-  run-indexing:
+  run_script:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,12 +20,10 @@ jobs:
 
       - name: Install dependencies
         run: |
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Start MongoDB
-        run: |
-          sudo systemctl start mongod
-          sleep 5  # Give MongoDB time to start
-
-      - name: Run the indexing script
+      - name: Run indexing script
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}  # Use the MongoDB Atlas connection string stored in GitHub Secrets
         run: python indexing.py
